@@ -14,14 +14,16 @@ spec:
     spec:
       containers:
         - name: auth
-          # image: morelcorp/auth
-          image: us.gcr.io/ticketing-dev-301616/auth
+          image: morelcorp/auth
+          # image: us.gcr.io/ticketing-dev-301616/auth
           env:
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
 ---
 apiVersion: v1
 kind: Service
