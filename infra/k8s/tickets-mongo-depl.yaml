@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tickets-mongo-deployment
+  name: tickets-mongo-depl
 spec:
   replicas: 1
   selector:
