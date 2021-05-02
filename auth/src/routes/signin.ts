@@ -43,6 +43,8 @@ router.post(
       jwt: userJwt,
     };
 
+    console.log('Successful signin by ', existingUser.email);
+
     res.status(200).send(existingUser);
   }
 );
