@@ -7,6 +7,9 @@ const Named = ({ url, method, body, onSuccess }) => {
   const doRequest = async (props = {}) => {
     try {
       setErrors(null);
+      
+      console.log('**DEBUG: Calling URL with axios - ', url);
+      
       const response = await axios[method](url, { ...body, ...props });
 
       if (onSuccess) {
