@@ -6,7 +6,7 @@ const Named = ({ req }) => {
     console.log('Server side called');
     return axios.create({
       baseURL:
-        'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+        'http://www.morelcorp.org',
       headers: req.headers,
     });
   } else {
