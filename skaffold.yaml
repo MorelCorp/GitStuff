@@ -8,10 +8,7 @@ deploy:
 build:
   local:
     push: false
-  # googleCloudBuild:
-  #   projectId: ticketing-dev-301616
   artifacts:
-    # - image: us.gcr.io/ticketing-dev-301616/auth
     - image: morelcorp/auth
       context: auth
       docker:
@@ -20,7 +17,6 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    # - image: us.gcr.io/ticketing-dev-301616/client
     - image: morelcorp/client
       context: client
       docker:
@@ -29,7 +25,6 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
-    # - image: us.gcr.io/ticketing-dev-301616/tickets
     - image: morelcorp/tickets
       context: tickets
       docker:
