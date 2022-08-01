@@ -32,3 +32,11 @@ this might take quite a long time and you might have to restart the process a fe
 # Quick overview of the architecture
 
 ![](_docs/architecture.png)
+
+## Datatypes used by the different services
+
+![](_docs/datatypes.png)
+
+## Events that will be sent between services
+
+![](_docs/events.png)
