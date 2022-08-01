@@ -40,3 +40,7 @@ this might take quite a long time and you might have to restart the process a fe
 ## Events that will be sent between services
 
 ![](_docs/events.png)
+
+# Dev Tips
+
+1. To debug this locally using chrome you'll have to bypass security for the weird nginx configs will not allow us to _normally_ bypass this by exporting and importing the fake certificate. The way to go is, in Chrome, in the tab you're loading type this: `thisisunsafe`

@@ -33,8 +33,8 @@
     "mongoose": "^5.11.15",
     "mongoose-update-if-current": "^1.4.0",
     "save": "^2.4.0",
-    "ts-node-dev": "^1.1.1",
-    "typescript": "^4.1.5"
+    "ts-node-dev": "^2",
+    "typescript": "^4"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
