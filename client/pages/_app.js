@@ -16,9 +16,9 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
 AppComponent.getInitialProps = async (appContext) => {
   const client = buildClient(appContext.ctx);
 
-  console.log('**getInitialProps before calling /api/users/currentuser');
-
-  const { data } = await client.get('/api/users/currentuser');
+  const { data } = await client.get('/api/users/currentuser').catch((err) => {
+    console.error(err.message);
+  });
 
   //calling the getInitialProps for all pages that have one
   let pageProps = {};
@@ -28,7 +28,6 @@ AppComponent.getInitialProps = async (appContext) => {
       client,
       data.currentUser
     );
-    console.log('**All good for AppComponent Initialization. Returning.');
   }
 
   return {

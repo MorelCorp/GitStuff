@@ -3,7 +3,7 @@ import { OrderCreatedListener } from './events/listeners/order-created-listener'
 import { OrderStatus } from '@morelcorp_learn/common';
 
 const start = async () => {
-  console.log('Starting....');
+  console.log('Starting Expiration service...');
 
   if (!process.env.NATS_CLIENT_ID) {
     throw new Error('NATS_CLIENT_ID must be defined');

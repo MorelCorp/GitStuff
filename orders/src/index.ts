@@ -7,7 +7,7 @@ import { ExpirationCompleteListener } from './events/listeners/expiration-comple
 import { PaymentCreatedListener } from './events/listeners/payment-created-listener';
 
 const start = async () => {
-  console.log('Starting Orders Service........');
+  console.log('Starting Orders Service...');
 
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY must be defined');
@@ -54,7 +54,7 @@ const start = async () => {
   console.log('connected to MongoDB');
 
   app.listen(3000, () => {
-    console.log('Orders is now listening on port 3000 !');
+    console.log('Listening on port 3000 !');
   });
 };
 

@@ -6,7 +6,7 @@ import { OrderCancelledListener } from './events/listeners/order-cancelled-liste
 import { OrderCreatedListener } from './events/listeners/order-created-listener';
 
 const start = async () => {
-  console.log('Starting....');
+  console.log('Starting Payments service...');
 
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY must be defined');
@@ -51,7 +51,7 @@ const start = async () => {
   console.log('connected to MongoDB');
 
   app.listen(3000, () => {
-    console.log('Payments is now listening on port 3000 !');
+    console.log('Listening on port 3000 !');
   });
 };
 
