@@ -16,6 +16,12 @@ spec:
         - name: client
           # image: us.gcr.io/ticketing-dev-301616/client
           image: morelcorp/client
+          env:
+            - name: STRIPE_PUBLISHABLE
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-public
+                  key: STRIPE_PUBLISHABLE
 ---
 apiVersion: v1
 kind: Service

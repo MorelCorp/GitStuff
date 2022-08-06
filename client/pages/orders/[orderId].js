@@ -3,7 +3,10 @@ import StripeCheckout from 'react-stripe-checkout';
 import useRequest from '../../hooks/use-request';
 import Router from 'next/router';
 
-const OrderShow = ({ order, currentUser }) => {
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
+
+const OrderShow = ({ order, currentUser, stripePublishableKey }) => {
   const [timeLeft, setTimeLeft] = useState(0);
   const { doRequest, errors } = useRequest({
     url: '/api/payments',
@@ -37,7 +40,7 @@ const OrderShow = ({ order, currentUser }) => {
       Time left to pay: {timeLeft} seconds.
       <StripeCheckout
         token={({ id }) => doRequest({ token: id })}
-        stripeKey="pk_test_51IcY0fJ6bl1JsxB2R5zBmknccTShIISHErpSMHkj44VPCkHZeSkbiQVxiKnIbgVMKAT0TgGYehCVTuklWzUuEx0800bYi13QjY"
+        stripeKey={publicRuntimeConfig.stripePublishable}
         amount={order.ticket.price * 100}
         email={currentUser.email}
       />
@@ -48,6 +51,7 @@ const OrderShow = ({ order, currentUser }) => {
 
 OrderShow.getInitialProps = async (context, client) => {
   const { orderId } = context.query;
+
   const { data } = await client.get(`/api/orders/${orderId}`);
 
   return { order: data };

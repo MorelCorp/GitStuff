@@ -22,7 +22,9 @@ Note: Last tested on Windows 10 (August 2022)
 
 `kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=[THE KEY]`
 
-You can get your stripe key in API Keys in the Developers section of your stripe account
+`kubectl create secret generic stripe-public --from-literal=STRIPE_PUBLISHABLE=[THE KEY]`
+
+You can get your stripe secret key and publishable key in API Keys in the Developers section of your stripe account. (Using secrets for something not secret could probably be improved)
 
 ## you also need to install ingress-nginx on your cluster
 
