@@ -6,7 +6,7 @@ export interface StuffCreatedEvent {
     id: string;
     title: string;
     price: number;
-    description: string | undefined;
+    description: string;
     userId: string;
     version: number;
   };
