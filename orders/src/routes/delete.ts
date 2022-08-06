@@ -16,7 +16,7 @@ router.delete(
   async (req: Request, res: Response) => {
     const { orderId } = req.params;
 
-    const order = await Order.findById(orderId).populate('ticket');
+    const order = await Order.findById(orderId).populate('stuff');
 
     if (!order) {
       throw new NotFoundError();
@@ -33,8 +33,8 @@ router.delete(
     new OrderCancelledPublisher(natsWrapper.client).publish({
       id: order.id,
       version: order.version,
-      ticket: {
-        id: order.ticket.id,
+      stuff: {
+        id: order.stuff.id,
       },
     });
 

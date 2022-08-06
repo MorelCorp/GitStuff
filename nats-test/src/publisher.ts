@@ -1,17 +1,17 @@
 import nats from 'node-nats-streaming';
-import { TicketCreatedPublisher } from './events/ticket-created-publisher';
+import { StuffCreatedPublisher } from './events/stuff-created-publisher';
 
 console.clear();
 
 //ppl use stan (reverse nats) instead of client for the cool factor
-const stan = nats.connect('ticketing', 'abc', {
+const stan = nats.connect('gitstuff', 'abc', {
   url: 'http://localhost:4222',
 });
 
 stan.on('connect', async () => {
   console.log('Publisher connected to NATS');
 
-  const publisher = new TicketCreatedPublisher(stan);
+  const publisher = new StuffCreatedPublisher(stan);
 
   try {
     await publisher.publish({
@@ -30,7 +30,7 @@ stan.on('connect', async () => {
   // });
 
   // // for (let index = 0; index < 4; index++) {
-  // stan.publish('ticket:created', data, () => {
+  // stan.publish('stuff:created', data, () => {
   //   console.log('  Event Published!');
   // });
   // // }

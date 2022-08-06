@@ -8,7 +8,7 @@ import {
   BadRequestError,
 } from '@morelcorp_learn/common';
 import { body } from 'express-validator';
-import { Ticket } from '../models/ticket';
+import { Stuff } from '../models/stuff';
 import { Order } from '../models/order';
 import { natsWrapper } from '../nats-wrapper';
 import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher';
@@ -22,26 +22,26 @@ router.post(
   '/api/orders',
   requireAuth,
   [
-    body('ticketId')
+    body('stuffId')
       .not()
       .isEmpty()
-      .custom((input: string) => mongoose.Types.ObjectId.isValid(input)) ///this validation introduces some coupling between ticket service db type and order service (not super cool)
-      .withMessage('TicketId must be provided'),
+      .custom((input: string) => mongoose.Types.ObjectId.isValid(input)) ///this validation introduces some coupling between stuff service db type and order service (not super cool)
+      .withMessage('StuffId must be provided'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const { ticketId } = req.body;
+    const { stuffId } = req.body;
 
-    // Find the ticket the user wants to order in the database
-    const ticket = await Ticket.findById(ticketId);
-    if (!ticket) {
+    // Find the stuff the user wants to order in the database
+    const stuff = await Stuff.findById(stuffId);
+    if (!stuff) {
       throw new NotFoundError();
     }
 
-    // make sure this ticket is not already reserved
-    const isReserved = await ticket.isReserved();
+    // make sure this stuff is not already reserved
+    const isReserved = await stuff.isReserved();
     if (isReserved) {
-      throw new BadRequestError('Ticket is already reserved');
+      throw new BadRequestError('Stuff is already reserved');
     }
 
     //calculate an expiration date for this order
@@ -53,7 +53,7 @@ router.post(
       userId: req.currentUser!.id,
       status: OrderStatus.Created,
       expiresAt: expiration,
-      ticket,
+      stuff,
     });
 
     await order.save();
@@ -65,9 +65,9 @@ router.post(
       status: order.status,
       userId: order.userId,
       expiresAt: order.expiresAt.toISOString(),
-      ticket: {
-        id: ticket.id,
-        price: ticket.price,
+      stuff: {
+        id: stuff.id,
+        price: stuff.price,
       },
     });
 

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          # image: us.gcr.io/ticketing-dev-301616/client
+          # image: us.gcr.io/gitstuff-dev-301616/client
           image: morelcorp/client
           env:
             - name: STRIPE_PUBLISHABLE

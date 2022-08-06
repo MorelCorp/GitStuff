@@ -25,8 +25,8 @@ build:
         manual:
           - src: '**/*.js'
             dest: .
-    - image: morelcorp/tickets
-      context: tickets
+    - image: morelcorp/stuff
+      context: stuff
       docker:
         dockerfile: Dockerfile
       sync:

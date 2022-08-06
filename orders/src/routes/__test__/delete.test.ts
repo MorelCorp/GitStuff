@@ -1,25 +1,25 @@
 import request from 'supertest';
 import { app } from '../../app';
-import { Ticket } from '../../models/ticket';
+import { Stuff } from '../../models/stuff';
 import { OrderStatus } from '../../models/order';
 import { natsWrapper } from '../../nats-wrapper';
 import mongoose from 'mongoose';
 
 it('marks an order as cancelled', async () => {
-  //create a ticket
-  const ticket = Ticket.build({
+  //create a stuff
+  const stuff = Stuff.build({
     id: mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
-  await ticket.save();
+  await stuff.save();
 
   const user = global.signin();
-  //make a request to build an order with this ticket
+  //make a request to build an order with this stuff
   const { body: order } = await request(app)
     .post('/api/orders')
     .set('Cookie', user)
-    .send({ ticketId: ticket.id })
+    .send({ stuffId: stuff.id })
     .expect(201);
 
   //make request to cancel the order
@@ -40,20 +40,20 @@ it('marks an order as cancelled', async () => {
 });
 
 it('emits an order cancelled event', async () => {
-  //create a ticket
-  const ticket = Ticket.build({
+  //create a stuff
+  const stuff = Stuff.build({
     id: mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
-  await ticket.save();
+  await stuff.save();
 
   const user = global.signin();
-  //make a request to build an order with this ticket
+  //make a request to build an order with this stuff
   const { body: order } = await request(app)
     .post('/api/orders')
     .set('Cookie', user)
-    .send({ ticketId: ticket.id })
+    .send({ stuffId: stuff.id })
     .expect(201);
 
   //make request to cancel the order

@@ -41,7 +41,7 @@ const OrderShow = ({ order, currentUser, stripePublishableKey }) => {
       <StripeCheckout
         token={({ id }) => doRequest({ token: id })}
         stripeKey={publicRuntimeConfig.stripePublishable}
-        amount={order.ticket.price * 100}
+        amount={order.stuff.price * 100}
         email={currentUser.email}
       />
       {errors}

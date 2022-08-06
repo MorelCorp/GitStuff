@@ -15,12 +15,12 @@ spec:
       containers:
         - name: expiration
           image: morelcorp/expiration
-          # image: us.gcr.io/ticketing-dev-301616/expiration
+          # image: us.gcr.io/gitstuff-dev-301616/expiration
           env:
             - name: NATS_URL
               value: 'http://nats-srv:4222'
             - name: NATS_CLUSTER_ID
-              value: ticketing
+              value: gitstuff
             - name: NATS_CLIENT_ID
               valueFrom:
                 fieldRef:

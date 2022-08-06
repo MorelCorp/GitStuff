@@ -1,4 +1,4 @@
 export enum Subjects {
-  TicketCreated = 'ticket:created',
+  StuffCreated = 'stuff:created',
   OrderUpdated = 'order:updated',
 }

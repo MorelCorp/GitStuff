@@ -5,7 +5,7 @@ const Named = ({ currentUser }) => {
   const links = [
     !currentUser && { label: 'Sign Up', href: '/auth/signup' },
     !currentUser && { label: 'Sign In', href: '/auth/signin' },
-    currentUser && { label: 'Sell Tickets', href: '/tickets/new' },
+    currentUser && { label: 'Sell Stuff', href: '/stuff/new' },
     currentUser && { label: 'My Orders', href: '/orders' },
     currentUser && { label: 'Sign Out', href: '/auth/signout' },
   ]
@@ -23,7 +23,7 @@ const Named = ({ currentUser }) => {
   return (
     <nav className="navbar navbar-light bg-light">
       <Link href="/">
-        <a className="navbar-brand">GitTix</a>
+        <a className="navbar-brand">GitStuff</a>
       </Link>
       <div className="d-flex justify-content-end">
         <ul className="nav d-flex align-items-center">{links}</ul>

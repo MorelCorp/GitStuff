@@ -1,0 +1,13 @@
+name: tests-stuff
+
+on:
+  pull_request:
+    paths:
+      - 'stuff/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd stuff && npm install && npm run test:ci

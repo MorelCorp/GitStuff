@@ -1,23 +1,23 @@
 import request from 'supertest';
 import { app } from '../../app';
-import { Ticket } from '../../models/ticket';
+import { Stuff } from '../../models/stuff';
 import mongoose from 'mongoose';
 
 it('fetches the order', async () => {
-  //create a ticket
-  const ticket = Ticket.build({
+  //create a stuff
+  const stuff = Stuff.build({
     id: mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
-  await ticket.save();
+  await stuff.save();
 
   const user = global.signin();
-  //make a request to build an order with this ticket
+  //make a request to build an order with this stuff
   const { body: order } = await request(app)
     .post('/api/orders')
     .set('Cookie', user)
-    .send({ ticketId: ticket.id })
+    .send({ stuffId: stuff.id })
     .expect(201);
 
   //make request to fetch order
@@ -32,20 +32,20 @@ it('fetches the order', async () => {
 });
 
 it('returns an error if one user tries to fetch another users order', async () => {
-  //create a ticket
-  const ticket = Ticket.build({
+  //create a stuff
+  const stuff = Stuff.build({
     id: mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
-  await ticket.save();
+  await stuff.save();
 
   const user = global.signin();
-  //make a request to build an order with this ticket
+  //make a request to build an order with this stuff
   const { body: order } = await request(app)
     .post('/api/orders')
     .set('Cookie', user)
-    .send({ ticketId: ticket.id })
+    .send({ stuffId: stuff.id })
     .expect(201);
 
   //make request to fetch order

@@ -4,22 +4,22 @@ import { OrderStatus, ExpirationCompleteEvent } from '@morelcorp_learn/common';
 import { ExpirationCompleteListener } from '../expiration-complete-listener';
 import { natsWrapper } from '../../../nats-wrapper';
 import { Order } from '../../../models/order';
-import { Ticket } from '../../../models/ticket';
+import { Stuff } from '../../../models/stuff';
 
 const setup = async () => {
   const listener = new ExpirationCompleteListener(natsWrapper.client);
 
-  const ticket = Ticket.build({
+  const stuff = Stuff.build({
     id: mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   });
-  await ticket.save();
+  await stuff.save();
   const order = Order.build({
     status: OrderStatus.Created,
     userId: 'alskdfj',
     expiresAt: new Date(),
-    ticket,
+    stuff,
   });
   await order.save();
 
@@ -32,11 +32,11 @@ const setup = async () => {
     ack: jest.fn(),
   };
 
-  return { listener, order, ticket, data, msg };
+  return { listener, order, stuff, data, msg };
 };
 
 it('updates the order status to cancelled', async () => {
-  const { listener, order, ticket, data, msg } = await setup();
+  const { listener, order, stuff, data, msg } = await setup();
 
   await listener.onMessage(data, msg);
 
@@ -45,7 +45,7 @@ it('updates the order status to cancelled', async () => {
 });
 
 it('emits an OrderCancelled event', async () => {
-  const { listener, order, ticket, data, msg } = await setup();
+  const { listener, order, stuff, data, msg } = await setup();
 
   await listener.onMessage(data, msg);
 
@@ -58,7 +58,7 @@ it('emits an OrderCancelled event', async () => {
 });
 
 it('acks the message', async () => {
-  const { listener, order, ticket, data, msg } = await setup();
+  const { listener, order, stuff, data, msg } = await setup();
 
   await listener.onMessage(data, msg);
 

@@ -1,20 +1,20 @@
 import mongoose, { mongo } from 'mongoose';
 import { OrderStatus } from '@morelcorp_learn/common';
-import { TicketDoc } from './ticket';
+import { StuffDoc } from './stuff';
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 interface OrderAttrs {
   userId: string;
   status: OrderStatus;
   expiresAt: Date;
-  ticket: TicketDoc;
+  stuff: StuffDoc;
 }
 
 interface OrderDoc extends mongoose.Document {
   userId: string;
   status: OrderStatus;
   expiresAt: Date;
-  ticket: TicketDoc;
+  stuff: StuffDoc;
   version: number;
 }
 
@@ -37,9 +37,9 @@ const orderSchema = new mongoose.Schema(
     expiresAt: {
       type: mongoose.Schema.Types.Date,
     },
-    ticket: {
+    stuff: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Ticket',
+      ref: 'Stuff',
     },
   },
   {

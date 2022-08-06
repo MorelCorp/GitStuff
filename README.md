@@ -1,4 +1,4 @@
-# Ticketing
+# GitStuff
 
 This app is my version of the excellent course from Stephen Grider _Microservices with NodeJS and React_ on udemy. (https://www.udemy.com/course/microservices-with-node-js-and-react)
 
