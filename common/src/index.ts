@@ -15,8 +15,8 @@ export * from './middlewares/validate-requests';
 export * from './events/base-listener';
 export * from './events/base-publisher';
 export * from './events/subjects';
-export * from './events/ticket-created-event';
-export * from './events/ticket-updated-events';
+export * from './events/stuff-created-event';
+export * from './events/stuff-updated-events';
 
 export * from './events/types/order-status';
 export * from './events/order-cancelled-event';
