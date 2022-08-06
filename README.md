@@ -30,6 +30,8 @@ You can get your stripe secret key and publishable key in API Keys in the Develo
 
 `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml`
 
+> ⚠️ You will have to restart Docker Desktop after installing ingress-nginx on the cluster
+
 ## Running cluster
 
 `skaffold dev`
@@ -51,3 +53,5 @@ this might take quite a long time and you might have to restart the process a fe
 # Dev Tips
 
 1. To debug this locally using chrome you'll have to bypass security for the weird nginx configs will not allow us to _normally_ bypass this by exporting and importing the fake certificate. The way to go is, in Chrome, in the tab you're loading type this: `thisisunsafe`
+2. To test payments, you can use the test credit card credentials from stripe  
+   ![](_docs/stripe.png)
