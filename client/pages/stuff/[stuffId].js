@@ -14,12 +14,17 @@ const StuffShow = ({ stuff }) => {
 
   return (
     <div>
-      <h1>{stuff.title}</h1>
-      <h4>Price: {stuff.price}</h4>
+      <div class="card" style={{ width: 18 + 'rem' }}>
+        <div class="card-body">
+          <h5 class="card-title">{stuff.title}</h5>
+          <h6 class="card-subtitle">Price: {stuff.price}</h6>
+          <p class="card-text">{stuff.description}</p>
+          <button onClick={() => doRequest()} className="btn btn-primary">
+            Purchase
+          </button>
+        </div>
+      </div>
       {errors}
-      <button onClick={() => doRequest()} className="btn btn-primary">
-        Purchase
-      </button>
     </div>
   );
 };
